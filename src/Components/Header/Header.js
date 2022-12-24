@@ -1,11 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { toast } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../context/UserContext'
 
 const Header = () => {
+  const {user,logOut}=useContext(AuthContext);
+  const nav=useNavigate()
+  const handleLogOut=()=>{
+    const confirm=window.confirm("Are Your Sure You Want To log Out ")
+    if(confirm){
+      logOut().then(res=>res.json())
+      toast.success("USER SIGNED OUT SUCCESSFULLY")
+      nav("/")
+
+    }
+  }
     const listItems=<React.Fragment>
                      <li><Link to="/">Home</Link></li> 
+                    {
+                      user ?  <button onClick={handleLogOut} className='btn btn-ghost'>Logout</button>
+                      :
+                     <>
                      <li><Link to="/login">Login</Link></li> 
-                     <li><Link to="/register">Register</Link></li> 
+                     <li><Link to="/register">Register</Link></li>
+                     </>
+                    } 
                     </React.Fragment>
   return (
     <div className="navbar bg-base-100">

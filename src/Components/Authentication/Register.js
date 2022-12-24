@@ -13,7 +13,13 @@ const Register = () => {
         const otp=window.prompt("Enter the OTP");console.log(otp)
         result.confirm(otp).then(result=>{
           const user=result.user
-          console.log(user)
+          fetch("http://localhost:5000/users",{
+            method:"POST",
+            headers:{
+              "content-type":"application/json"
+            },
+            body:JSON.stringify(data)
+          }).then(res=>res.json()).then(data=>console.log(data)).catch(error=>console.log(error))
         })
        }).catch(error=>console.log(error))
       console.log(data)};
