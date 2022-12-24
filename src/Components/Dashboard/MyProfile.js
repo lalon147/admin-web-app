@@ -7,7 +7,7 @@ const MyProfile = () => {
    console.log(user)
    useEffect(()=>{
       if(user){
-        fetch(`http://localhost:5000/users?phone=${user.phoneNumber.slice(3,14)}`)
+        fetch(`https://admin-web-app-taupe.vercel.app/users?phone=${user.phoneNumber.slice(3,14)}`)
         .then(res=>res.json()).then(data=>{
         console.log(data)
         setRole(data.role)

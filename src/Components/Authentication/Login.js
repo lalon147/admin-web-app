@@ -15,7 +15,7 @@ const Login = () => {
       const otp=window.prompt("Enter the OTP");console.log(otp)
       result.confirm(otp).then(result=>{
         const user=result.user;
-        fetch("http://localhost:5000/verify-user",{
+        fetch("https://admin-web-app-taupe.vercel.app/verify-user",{
           method:"POST",
           headers:{
             "content-type":"application/json"
@@ -23,7 +23,7 @@ const Login = () => {
           body:JSON.stringify(data)
         }).then(res=>res.json()).then(data=>{
           if(data.message==="AUTHORIZED"){
-            fetch(`http://localhost:5000/jwt?phone=${data.phone}`).then(res=>res.json()).then(data=>{
+            fetch(`https://admin-web-app-taupe.vercel.app/jwt?phone=${data.phone}`).then(res=>res.json()).then(data=>{
               localStorage.setItem("token",data.token)
             })
             toast.success("USER SIGNED IN SUCCESSFULLY ");

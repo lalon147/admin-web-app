@@ -17,7 +17,7 @@ const ProductCard = ({product}) => {
             image:image            
         }
         
-        fetch("http://localhost:5000/add-to-cart",{
+        fetch("https://admin-web-app-taupe.vercel.app/add-to-cart",{
             method:"POST",
             headers:{
                 "content-type":"application/json"

@@ -15,7 +15,7 @@ const AddCustomer = () => {
          fullName,password,phone,role
      }
 
-     fetch("http://localhost:5000/users",{
+     fetch("https://admin-web-app-taupe.vercel.app/users",{
         method:"POST",
         headers:{
             "content-type":"application/json",

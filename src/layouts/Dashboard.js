@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import { AuthContext } from '../context/UserContext';
+import {HashLoader} from "react-spinners"
 
 const Dashboard = () => {
     const {user}= useContext(AuthContext);
@@ -9,7 +10,7 @@ const Dashboard = () => {
     console.log(user)
     useEffect(()=>{
        if(user){
-         fetch(`http://localhost:5000/users?phone=${user.phoneNumber.slice(3,14)}`)
+         fetch(`https://admin-web-app-taupe.vercel.app/users?phone=${user.phoneNumber.slice(3,14)}`)
          .then(res=>res.json()).then(data=>{
          console.log(data)
          setRole(data.role)
@@ -19,6 +20,14 @@ const Dashboard = () => {
          return
        }
     },[user])
+    if(role===""){
+      return <div className='flex justify-center items-center my-20'>
+      <HashLoader
+color="#6d28d9"
+size={60}
+/>
+  </div>
+    }
   return (
     <div>
     <Header></Header>

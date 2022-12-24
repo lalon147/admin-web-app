@@ -16,14 +16,14 @@ const Register = () => {
         const otp=window.prompt("Enter the OTP");console.log(otp)
         result.confirm(otp).then(result=>{
           const user=result.user
-          fetch("http://localhost:5000/users",{
+          fetch("https://admin-web-app-taupe.vercel.app/users",{
             method:"POST",
             headers:{
               "content-type":"application/json"
             },
             body:JSON.stringify(data)
           }).then(res=>res.json()).then(data=>{
-            fetch(`http://localhost:5000/jwt?phone=${data.phone}`).then(res=>res.json()).then(data=>{
+            fetch(`https://admin-web-app-taupe.vercel.app/jwt?phone=${data.phone}`).then(res=>res.json()).then(data=>{
               localStorage.setItem("token",data.token);
               nav("/")
             })

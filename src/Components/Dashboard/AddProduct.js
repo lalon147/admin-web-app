@@ -14,7 +14,7 @@ const AddProduct = () => {
         const product={
             name,price,img,category
         }
-        fetch("http://localhost:5000/products",{
+        fetch("https://admin-web-app-taupe.vercel.app/products",{
             method:"POST",
             headers:{
                 "content-type":"application/json",

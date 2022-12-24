@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import {HashLoader} from "react-spinners"
 
 const AllCustomer = () => {
     const [users,setUsers]=useState([])
     useEffect(()=>{
      
-        fetch("http://localhost:5000/all-users",{
+        fetch("https://admin-web-app-taupe.vercel.app/all-users",{
           headers:{
             "authorization":`bearer ${localStorage.getItem("token")}`}
         })
@@ -14,6 +15,14 @@ const AllCustomer = () => {
             setUsers(data)
             console.log(data)})
     },[])
+    if(users.length===0){
+      return <div className='flex justify-center items-center my-20'>
+        <HashLoader
+  color="#6d28d9"
+  size={60}
+/>
+    </div>
+    }
   return (
     <div className="overflow-x-auto">
   <table className="table w-full">

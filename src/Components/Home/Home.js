@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { HashLoader } from 'react-spinners';
 import ProductCard from './productCard';
 
 export const Home = () => {
   const [products,setProducts]=useState([]);
   useEffect(()=>{
-    fetch("http://localhost:5000/products").then(res=>res.json()).then(data=>{
+    fetch("https://admin-web-app-taupe.vercel.app/products").then(res=>res.json()).then(data=>{
       setProducts(data);
       
     })
@@ -15,6 +16,14 @@ export const Home = () => {
     return name.startsWith(e.target.value.toLowerCase())
    })
    setProducts(wantedProducts);
+  }
+  if(!products.length){
+    return  <div className='flex justify-center items-center my-20'>
+        <HashLoader
+  color="#6d28d9"
+  size={60}
+/>
+    </div>
   }
   
   return (
