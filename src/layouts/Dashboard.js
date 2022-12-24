@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 import Header from '../Components/Header/Header';
+import { AuthContext } from '../context/UserContext';
 
 const Dashboard = () => {
+    const {user}= useContext(AuthContext);
+    const [role,setRole]=useState("")
+    console.log(user)
+    useEffect(()=>{
+       if(user){
+         fetch(`http://localhost:5000/users?phone=${user.phoneNumber.slice(3,14)}`)
+         .then(res=>res.json()).then(data=>{
+         console.log(data)
+         setRole(data.role)
+       }).catch(error=>console.log(error))
+       }
+       else{
+         return
+       }
+    },[user])
   return (
     <div>
     <Header></Header>
@@ -18,6 +34,13 @@ const Dashboard = () => {
           <li>
             <Link to="/dashboard">My Profile</Link>
           </li>
+          {
+                role==="admin" && <>
+                   <li><Link to="/dashboard/all-products">All products</Link></li>
+                   <li><Link to="/dashboard/all-customer">Customer List</Link></li>
+                </>
+                 
+          }
           
            
             
