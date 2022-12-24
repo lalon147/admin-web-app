@@ -23,6 +23,9 @@ const Login = () => {
           body:JSON.stringify(data)
         }).then(res=>res.json()).then(data=>{
           if(data.message==="AUTHORIZED"){
+            fetch(`http://localhost:5000/jwt?phone=${data.phone}`).then(res=>res.json()).then(data=>{
+              localStorage.setItem("token",data.token)
+            })
             toast.success("USER SIGNED IN SUCCESSFULLY ");
             nav("/")
           }

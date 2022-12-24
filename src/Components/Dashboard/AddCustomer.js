@@ -18,7 +18,8 @@ const AddCustomer = () => {
      fetch("http://localhost:5000/users",{
         method:"POST",
         headers:{
-            "content-type":"application/json"
+            "content-type":"application/json",
+            "authorization":`bearer ${localStorage.getItem("token")}`
         },
         body:JSON.stringify(user)
      }).then(res=>res.json()).then(data=>{

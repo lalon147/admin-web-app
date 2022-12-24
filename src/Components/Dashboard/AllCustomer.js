@@ -5,7 +5,10 @@ const AllCustomer = () => {
     const [users,setUsers]=useState([])
     useEffect(()=>{
      
-        fetch("http://localhost:5000/all-users")
+        fetch("http://localhost:5000/all-users",{
+          headers:{
+            "authorization":`bearer ${localStorage.getItem("token")}`}
+        })
          .then(res=>res.json())
          .then(data=>{
             setUsers(data)
