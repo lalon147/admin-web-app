@@ -18,7 +18,12 @@ const Header = () => {
     const listItems=<React.Fragment>
                      <li><Link to="/">Home</Link></li> 
                     {
-                      user ?  <button onClick={handleLogOut} className='btn btn-ghost'>Logout</button>
+                      user ?  
+                      <>
+                      <li><Link to="/dashboard">Dashboard</Link></li>
+                      <button onClick={handleLogOut} className='btn btn-ghost'>Logout</button>
+                      <li><Link to="/cart">Cart</Link></li>  
+                      </>
                       :
                      <>
                      <li><Link to="/login">Login</Link></li> 
