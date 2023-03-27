@@ -7,6 +7,7 @@ export const Home = () => {
   useEffect(()=>{
     fetch("https://admin-web-app-taupe.vercel.app/products").then(res=>res.json()).then(data=>{
       setProducts(data);
+      console.log(data)
       
     })
   },[])
